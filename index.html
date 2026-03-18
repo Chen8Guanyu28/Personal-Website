@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guanyu Chen</title>
+  <meta name="description" content="Human-centred design researcher working across healthcare, education, and interactive systems." />
+  <style>
+    :root {
+      --bg: #f6f6f3;
+      --surface: #ffffff;
+      --text: #1f2933;
+      --muted: #667085;
+      --line: #d9dee5;
+      --accent: #1d3557;
+      --accent-soft: #e9eef5;
+      --max: 1080px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(100% - 2rem, var(--max)); margin: 0 auto; }
+    .site-header {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(246, 246, 243, 0.92);
+      border-bottom: 1px solid rgba(31, 41, 51, 0.08);
+    }
+    .nav {
+      min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .brand { font-weight: 600; letter-spacing: 0.01em; }
+    .nav-links { display: flex; gap: 1.25rem; color: var(--muted); font-size: 0.95rem; flex-wrap: wrap; }
+    .nav-links a:hover { color: var(--text); }
+    .hero { padding: 6rem 0 4rem; border-bottom: 1px solid var(--line); }
+    .eyebrow {
+      display: inline-block; padding: 0.32rem 0.68rem; border-radius: 999px;
+      background: var(--accent-soft); color: var(--accent); font-size: 0.85rem; font-weight: 600; margin-bottom: 1.2rem;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      font-size: clamp(2.3rem, 5vw, 4.4rem); line-height: 1.08; letter-spacing: -0.03em;
+      max-width: 11ch; margin-bottom: 1rem;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.4fr 0.9fr; gap: 2rem; align-items: start; }
+    .lead { color: var(--muted); font-size: 1.06rem; max-width: 62ch; margin-bottom: 1.8rem; }
+    .hero-actions { display: flex; gap: 0.9rem; flex-wrap: wrap; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 44px;
+      padding: 0.75rem 1rem; border-radius: 10px; border: 1px solid var(--line); background: var(--surface);
+      font-weight: 500; transition: transform 0.18s ease, border-color 0.18s ease;
+    }
+    .button:hover { transform: translateY(-1px); border-color: #bfc7d1; }
+    .button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 1.2rem;
+    }
+    .meta-list, .simple-list { list-style: none; padding: 0; margin: 0; }
+    .meta-list li, .simple-list li { padding: 0.65rem 0; border-bottom: 1px solid var(--line); }
+    .meta-list li:last-child, .simple-list li:last-child { border-bottom: none; }
+    section { padding: 4rem 0; }
+    .section-head {
+      display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 2rem; align-items: start; margin-bottom: 2rem;
+    }
+    .section-kicker { color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .section-title { font-size: clamp(1.6rem, 3vw, 2.3rem); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 0.7rem; }
+    .section-desc { color: var(--muted); max-width: 60ch; }
+    .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+    .project-card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 1.35rem;
+      transition: transform 0.18s ease, border-color 0.18s ease;
+    }
+    .project-card:hover { transform: translateY(-2px); border-color: #bfc7d1; }
+    .project-type { color: var(--muted); font-size: 0.86rem; margin-bottom: 0.9rem; }
+    .project-title { font-size: 1.18rem; margin-bottom: 0.5rem; }
+    .project-summary { color: var(--muted); font-size: 0.96rem; margin-bottom: 1rem; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      font-size: 0.82rem; padding: 0.28rem 0.55rem; border-radius: 999px;
+      background: #f1f4f7; color: #475467; border: 1px solid #e4e7ec;
+    }
+    .columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+    .timeline-item {
+      display: grid; grid-template-columns: 110px 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--line);
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-date { color: var(--muted); font-size: 0.92rem; font-weight: 500; }
+    .timeline-role { font-weight: 600; margin-bottom: 0.2rem; }
+    .timeline-org { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.35rem; }
+    .timeline-desc { color: var(--muted); font-size: 0.95rem; }
+    .contact-card { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1.25rem; align-items: start; }
+    .site-footer { padding: 2rem 0 3rem; color: var(--muted); font-size: 0.92rem; }
+    code { background: #f2f4f7; padding: 0.1rem 0.35rem; border-radius: 6px; }
+    @media (max-width: 860px) {
+      .hero-grid, .section-head, .project-grid, .columns, .contact-card { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 0.35rem; }
+      .hero { padding-top: 4.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top">Guanyu Chen</a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Human-Centred Design · Research · Interactive Systems</div>
+          <h1>Designing research-informed systems across healthcare and education.</h1>
+          <p class="lead">
+            I am a human-centred design researcher working across healthcare, education technology, and interactive systems. My work brings together field research, stakeholder engagement, visualisation, and prototyping to turn complex challenges into grounded design interventions.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects">View selected projects</a>
+            <a class="button" href="#contact">Contact</a>
+            <a class="button" href="./Guanyu-Chen-CV.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
+          </div>
+        </div>
+
+        <aside class="card">
+          <h3>At a glance</h3>
+          <ul class="meta-list">
+            <li><strong>Focus</strong><br />Healthcare systems, education technology, interactive design</li>
+            <li><strong>Methods</strong><br />Interviews, fieldwork, co-design, prototyping, visualisation</li>
+            <li><strong>Based in</strong><br />Singapore</li>
+            <li><strong>Currently exploring</strong><br />Research roles, design-led innovation, and interdisciplinary collaboration</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Selected work</div>
+            <h2 class="section-title">Projects</h2>
+          </div>
+          <p class="section-desc">
+            A selection of projects spanning healthcare service design, educational technology, knowledge visualisation, and interactive prototyping.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-type">Healthcare Service Design</div>
+            <h3 class="project-title">NICU / SCN Discharge Workflow Optimisation</h3>
+            <p class="project-summary">A hospital collaboration focused on improving discharge-day logistics, caregiver guidance, and staff coordination through field research and iterative prototyping.</p>
+            <div class="tag-row">
+              <span class="tag">Ethnographic Research</span>
+              <span class="tag">Co-design</span>
+              <span class="tag">Healthcare</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-type">Education Technology</div>
+            <h3 class="project-title">Knowledge-Graph-Based Teaching Feedback Tool</h3>
+            <p class="project-summary">A design research project exploring how knowledge graph visualisation can support teachers’ feedback work, student understanding analysis, and instructional decision-making.</p>
+            <div class="tag-row">
+              <span class="tag">EdTech</span>
+              <span class="tag">Knowledge Graph</span>
+              <span class="tag">Visualisation</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-type">Interactive Visualisation</div>
+            <h3 class="project-title">Math Knowledge Network Interface</h3>
+            <p class="project-summary">A D3.js-based force-directed graph project mapping mathematics knowledge points and linking them to student performance analysis.</p>
+            <div class="tag-row">
+              <span class="tag">D3.js</span>
+              <span class="tag">Learning Analytics</span>
+              <span class="tag">Interaction Design</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-type">Workshop & Facilitation</div>
+            <h3 class="project-title">AI-Supported Design Thinking Workshops</h3>
+            <p class="project-summary">Workshop design and facilitation work focused on using AI as a structured idea coach to support brainstorming, reflection, and self-regulated learning.</p>
+            <div class="tag-row">
+              <span class="tag">Facilitation</span>
+              <span class="tag">AI in Education</span>
+              <span class="tag">Workshop Design</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Profile</div>
+            <h2 class="section-title">About</h2>
+          </div>
+          <p class="section-desc">My background sits between education, design research, and applied systems thinking. I am particularly interested in how human-centred approaches can support complex real-world settings where coordination, decision-making, and user experience intersect.</p>
+        </div>
+
+        <div class="columns">
+          <div class="card">
+            <h3>What I work on</h3>
+            <ul class="simple-list">
+              <li>Healthcare service and workflow improvement</li>
+              <li>Educational technology and learning experience design</li>
+              <li>Data and knowledge visualisation for sensemaking</li>
+              <li>Interactive prototypes for communication and testing</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>How I work</h3>
+            <ul class="simple-list">
+              <li>Grounding design decisions in field insights and stakeholder needs</li>
+              <li>Translating qualitative and quantitative findings into clear interventions</li>
+              <li>Using visual and interactive artefacts to support alignment and iteration</li>
+              <li>Balancing research rigor with practical implementation constraints</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Timeline</div>
+            <h2 class="section-title">Experience</h2>
+          </div>
+          <p class="section-desc">A concise timeline of selected education, research, and applied design experience.</p>
+        </div>
+
+        <div class="card">
+          <div class="timeline-item">
+            <div class="timeline-date">2025–2026</div>
+            <div>
+              <div class="timeline-role">Research & Design Projects</div>
+              <div class="timeline-org">Healthcare, education, and interactive systems</div>
+              <div class="timeline-desc">Led and contributed to interdisciplinary projects involving stakeholder research, service design, interface design, and visualisation.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2023–2025</div>
+            <div>
+              <div class="timeline-role">Master of Technology and Design</div>
+              <div class="timeline-org">Singapore University of Technology and Design</div>
+              <div class="timeline-desc">Focused on human-centred design, design research, educational technology, and interactive prototyping.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">Earlier</div>
+            <div>
+              <div class="timeline-role">Education and Practice</div>
+              <div class="timeline-org">Teaching, facilitation, and applied design work</div>
+              <div class="timeline-desc">Built experience across teaching contexts, workshop facilitation, communication design, and research-informed practice.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-card card">
+          <div>
+            <div class="section-kicker">Get in touch</div>
+            <h2 class="section-title">Contact</h2>
+            <p class="section-desc">For research opportunities, collaboration, or portfolio enquiries, feel free to reach out.</p>
+          </div>
+          <div>
+            <ul class="simple-list">
+              <li><strong>Email</strong><br />your-email@example.com</li>
+              <li><strong>LinkedIn</strong><br />Add your LinkedIn profile URL</li>
+              <li><strong>GitHub</strong><br />Add your GitHub profile URL</li>
+              <li><strong>CV</strong><br />Replace <code>Guanyu-Chen-CV.pdf</code> with your actual PDF file</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© 2026 Guanyu Chen. Built with HTML, CSS, and GitHub Pages.</div>
+  </footer>
+</body>
+</html>
